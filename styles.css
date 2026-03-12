@@ -22,6 +22,8 @@ body {
 .header {
     background-color: white;
     border-bottom: 2px solid #d1d5db;
+    position: sticky;
+    top: 0;
 }
 
 .header-content {
