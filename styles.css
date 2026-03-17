@@ -5,6 +5,16 @@
     box-sizing: border-box;
 }
 
+/* These are the color variables. */
+/* refer to them as var(variablename) */
+:root {
+    --main: rgb(217, 189, 139);
+    --secondary: rgb(242, 218, 172);
+    --tertiary: rgb(64, 44, 19);
+    --accent1: rgb(166, 114, 50);
+    --accent2: rgb(191, 154, 105);
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -24,7 +34,7 @@ body {
 
 /* Header */
 .header {
-    background-color: white;
+    background-color: var(--secondary);
     border-bottom: 2px solid #d1d5db;
     position: sticky;
     top: 0;
@@ -41,8 +51,8 @@ body {
 .logo-box {
     width: 100px;
     height: 100px;
-    background-color: #e5e7eb;
-    border: 2px solid #9ca3af;
+    background-color: var(--tertiary);
+    border: 2px solid var(--accent1);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -57,24 +67,24 @@ body {
 
 .nav-item {
     padding: 0.5rem 1rem;
-    border: 2px solid #d1d5db;
-    background-color: white;
+    border: 2px solid var(--accent1);
+    background-color: var(--tertiary);
     font-size: 0.875rem;
-    color: #4b5563;
+    color: white;
     cursor: pointer;
     transition: background-color 0.2s;
 }
 
 .nav-item:hover {
-    background-color: #f3f4f6;
+    background-color: var(--accent2);
 }
 
 .nav-search {
     padding: 0.5rem 1rem;
-    border: 2px solid #d1d5db;
+    border: 2px solid var(--accent2);
     background-color: white;
     font-size: 0.875rem;
-    color: #4b5563;
+    color: var(--accent2);
     outline: none;
     transition: border-color 0.2s;
 }
