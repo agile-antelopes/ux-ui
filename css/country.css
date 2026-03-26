@@ -1,0 +1,197 @@
+/* Country detail page styles (shared by all country pages) */
+.main-content {
+    padding: 4rem 0;
+}
+
+.back-button {
+    margin-bottom: 2rem;
+    padding: 0.5rem 1rem;
+    background-color: white; 
+    border: 2px solid #d1d5db;
+    color: #374151;
+    cursor: pointer;
+    transition: background-color 0.2s; 
+}
+
+.back-button:hover { 
+    background-color: #f3f4f6; 
+}
+
+.country-title { 
+    height: 3rem;
+    background-color: #e5e7eb; 
+    border: 2px solid #9ca3af; 
+    max-width: 42rem; 
+    margin: 0 auto 3rem; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    color: #374151; 
+    font-size: 1.125rem; 
+}
+
+.detail-section { 
+    background-color: white; 
+    border: 2px solid #d1d5db; 
+    padding: 2rem; 
+    margin-bottom: 2rem; 
+}
+
+.detail-section-title { 
+    height: 2rem; 
+    background-color: #e5e7eb; 
+    border: 2px solid #d1d5db; 
+    max-width: 18rem; 
+    margin-bottom: 1.5rem; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    color: #4b5563; 
+}
+
+.detail-description { 
+    height: 8rem; 
+    background-color: #f9fafb; 
+    border: 1px solid #d1d5db; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    color: #6b7280; 
+}
+
+.stats-grid { 
+    display: grid; 
+    grid-template-columns: repeat(1, 1fr); 
+    gap: 1.5rem; 
+    margin-bottom: 2rem; 
+}
+
+.stat-box { 
+    background-color: white; 
+    border: 2px solid #d1d5db; 
+    padding: 1.5rem; 
+}
+
+.stat-value { 
+    height: 5rem; 
+    background-color: #f3f4f6; 
+    border: 2px solid #d1d5db; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    color: #6b7280; 
+    margin-bottom: 1rem; 
+}
+
+.stat-label { 
+    height: 1.5rem; 
+    background-color: #e5e7eb; 
+    border: 1px solid #d1d5db; 
+    display: flex; 
+    align-items: center;
+    justify-content: center; 
+    font-size: 0.75rem; 
+    color: #4b5563; 
+}
+
+.projects-list { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 1rem; 
+}
+
+.project-item { 
+    background-color: #f9fafb; 
+    border: 1px solid #d1d5db; 
+    padding: 1rem;
+}
+
+.project-title { 
+    height: 1.5rem; 
+    background-color: #e5e7eb; 
+    border: 1px solid #d1d5db; 
+    margin-bottom: 0.75rem; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 0.875rem;
+     color: #4b5563; 
+    }
+
+.project-description { 
+    height: 4rem; 
+    background-color: white; 
+    border: 1px solid #d1d5db; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 0.75rem; 
+    color: #6b7280; 
+}
+
+.researchers-grid { 
+    display: grid; 
+    grid-template-columns: repeat(1, 1fr); 
+    gap: 1.5rem; 
+}
+
+.researcher-card { 
+    background-color: #f9fafb; 
+    border: 1px solid #d1d5db; 
+    padding: 1rem; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 0.75rem; 
+    align-items: center; 
+}
+
+.researcher-photo { 
+    width: 5rem; 
+    height: 5rem; 
+    background-color: #e5e7eb; 
+    border: 2px solid #d1d5db; 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 0.75rem; color: #6b7280; }
+
+.researcher-name { 
+    height: 1.5rem; 
+    background-color: #e5e7eb; 
+    border: 1px solid #d1d5db; 
+    width: 100%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 0.875rem; 
+    color: #4b5563; 
+}
+
+.researcher-title { 
+    height: 1rem; 
+    background-color: #f3f4f6; 
+    border: 1px solid #d1d5db; 
+    width: 100%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 0.75rem; 
+    color: #6b7280; 
+}
+
+/* Country responsive rules */
+@media (min-width: 768px) {
+    .stats-grid { 
+        grid-template-columns: repeat(3, 1fr); 
+    }
+    
+    .researchers-grid {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}
+@media (min-width: 1024px) {
+    .researchers-grid { 
+        grid-template-columns: repeat(3, 1fr); 
+    }
+}
