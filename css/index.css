@@ -1,302 +1,181 @@
-    /* Index page-specific styles */
+/* FONTS */
+@font-face { font-family: "Audiowide"; src: url("../fonts/Audiowide/Audiowide-Regular.ttf"); }
+@font-face { font-family: "IBM serif"; src: url("../fonts/IBM_Plex_Serif/IBMPlexSerif-Regular.ttf"); }
+@font-face { font-family: "Zolando Sans"; src: url("../fonts/Zalando_Sans_Expanded/ZalandoSansExpanded-VariableFont_wght.ttf"); }
 
-    /* Hero Section */
-    .hero {
-        background-color: white;
-        border-bottom: 2px solid #d1d5db;
-    }
+:root {
+    --bg: #f9fafb;
+    --muted: #6b7280;
+    --text: #374151;
+    --panel: #ffffff;
+    --border: #e5e7eb;
+    --accent-1: #e5e7eb;
+    --accent-2: #9ca3af;
+    --primary: #3b82f6; /* A nice modern blue for subtle highlights */
+}
 
-    .hero-content {
-        padding: 5rem 0;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-        align-items: center;
-    }
+/* Reset / base */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
 
-    .hero-title {
-        height: 300px;
-        background: url("../graphics/images/logo_and_title/world\ loom\ logo_3.svg");
-        background-repeat: no-repeat;
-        background-position: center;
-        max-width: 42rem;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #4b5563;
-        font-size: 30px;
-    }
+/* Headings & base text use site fonts */
+h1 { font-family: "Audiowide", sans-serif; font-size: 28px; }
+h2, h3, p { font-family: "IBM serif", serif; }
+nav a, .nav-item { font-family: "Zolando Sans", sans-serif; }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
 
-    /* World Map Section */
+/* Header */
+.header {
+    background-color: var(--panel);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.header-content { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
+.logo-box { width: 180px; height: 60px; background: url("../graphics/images/logo_and_title/world\ loom\ logo_2.svg") no-repeat center/contain; }
+.nav { display: flex; gap: 1.5rem; align-items: center; }
+.nav-item { font-size: 0.95rem; color: var(--text); text-decoration: none; transition: color 0.2s; cursor: pointer; }
+.nav-item:hover { color: var(--primary); }
+.nav-search {
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background-color: var(--bg);
+    font-size: 0.875rem;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.nav-search:focus { border-color: var(--primary); box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2); }
 
-    .world-map-section {
-        padding: 4rem 0;
-        background-color: white;
-        border-bottom: 2px solid #d1d5db;
-    }
+/* Hero Section */
+.hero { background-color: var(--panel); padding: 5rem 0; text-align: center; }
+.hero-title { height: 200px; background: url("../graphics/images/logo_and_title/world\ loom\ logo_3.svg") no-repeat center/contain; max-width: 42rem; margin: 0 auto; }
 
-    .section-title {
-        height: 2.5rem;
-        background-color: #e5e7eb;
-        border: 2px solid #9ca3af;
-        max-width: 28rem;
-        margin: 0 auto 2rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #4b5563;
-    }
+/* World Map Section */
+.world-map-section { padding: 4rem 0; background-color: var(--panel); border-bottom: 1px solid var(--border); }
+.section-title { font-size: 2rem; color: var(--text); text-align: center; margin-bottom: 2.5rem; }
+.map-container { width: 100%; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); background-color: var(--bg); }
+.map-instruction { margin-top: 1rem; text-align: center; font-size: 0.9rem; color: var(--muted); padding: 1rem; }
 
-    .map-container {
-        width: 100%;
-        background-color: #f9fafb;
-        border: 2px solid #d1d5db;
-        padding: 1rem;
-        overflow-x: auto;
-    }
+/* Research Areas Carousel Section */
+.research-areas-section { padding: 5rem 0; background-color: var(--bg); }
+.carousel-wrapper { position: relative; display: flex; align-items: center; gap: 1.5rem; margin-top: 2rem; }
+.carousel-container { flex: 1; overflow: hidden; padding: 1rem 0; }
+.carousel-track { display: flex; transition: transform 0.5s ease; }
+.carousel-item { min-width: calc(33.333% - 1.5rem); padding: 0 0.75rem; }
+.country-card {
+    background-color: var(--panel);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 100%;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.country-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px rgba(0,0,0,0.08); }
+.country-image-placeholder {
+    height: 10rem;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.country-flag-img { width: 100%; height: 100%; object-fit: cover; }
+.country-name { font-size: 1.25rem; font-weight: bold; color: var(--text); text-align: center; }
+.country-description { font-size: 0.95rem; color: var(--muted); text-align: center; line-height: 1.5; flex-grow: 1; }
+.carousel-btn {
+    background-color: var(--panel);
+    border: none;
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--text);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: background-color 0.2s;
+}
+.carousel-btn:hover { background-color: var(--bg); color: var(--primary); }
+.carousel-dots { display: flex; justify-content: center; gap: 0.5rem; margin-top: 2rem; }
+.carousel-dot { width: 10px; height: 10px; background-color: var(--border); border-radius: 50%; cursor: pointer; transition: background-color 0.2s; }
+.carousel-dot.active { background-color: var(--primary); }
 
-    .world-map-svg {
-        width: 100%;
-        height: auto;
-        min-height: 400px;
-    }
+/* Featured Interviews Section */
+.publications-section { padding: 5rem 0; background-color: var(--panel); }
+.interviews-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+.interview-item {
+    background-color: var(--bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    transition: transform 0.2s;
+}
+.interview-item:hover { transform: translateY(-3px); }
+.interview-photo {
+    width: 90px;
+    height: 90px;
+    background-color: #d1d5db;
+    border-radius: 50%;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+.interview-content { flex: 1; display: flex; flex-direction: column; gap: 0.4rem; }
+.interview-name { font-size: 1.1rem; font-weight: bold; color: var(--text); }
+.interview-location { font-size: 0.85rem; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; }
+.interview-abstract { font-size: 0.95rem; color: var(--muted); line-height: 1.5; }
 
-    .country-marker {
-        cursor: pointer;
-    }
+/* Footer */
+.footer { background-color: var(--panel); padding: 4rem 0 2rem; border-top: 1px solid var(--border); }
+.footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 3rem; }
+.footer-column { display: flex; flex-direction: column; gap: 1rem; }
+.footer-heading { font-family: "Audiowide", sans-serif; font-size: 1.1rem; color: var(--text); margin-bottom: 0.5rem; }
+.footer-item { font-size: 0.95rem; color: var(--muted); text-decoration: none; cursor: pointer; transition: color 0.2s; }
+.footer-item:hover { color: var(--primary); }
+.footer-input {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background-color: var(--bg);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+.footer-input:focus { border-color: var(--primary); }
+.footer-button {
+    padding: 0.75rem 1rem;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.footer-button:hover { background-color: #2563eb; }
+.footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid var(--border); }
+.footer-copyright { font-size: 0.875rem; color: var(--muted); }
 
-    .country-rect {
-        transition: fill-opacity 0.3s;
-    }
-
-    .country-marker:hover .country-rect {
-        fill-opacity: 0.6 !important;
-    }
-
-    .country-text {
-        font-size: 10px;
-        fill: #374151;
-        pointer-events: none;
-        user-select: none;
-    }
-
-    .map-instruction {
-        margin-top: 1rem;
-        text-align: center;
-        font-size: 0.875rem;
-        color: #6b7280;
-        border: 1px solid #d1d5db;
-        background-color: #f9fafb;
-        padding: 0.75rem;
-    }
-
-    /* Research Areas Carousel Section */
-    .research-areas-section {
-        padding: 4rem 0;
-        background-color: #f9fafb;
-    }
-
-    .carousel-wrapper {
-        position: relative;
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        font-family: "IBM serif"
-    }
-
-    .carousel-container {
-        flex: 1;
-        overflow: hidden;
-    }
-
-    .carousel-track {
-        display: flex;
-        transition: transform 0.5s ease;
-    }
-
-    .carousel-item {
-        min-width: calc(33.333% - 1rem);
-        padding: 0 0.75rem;
-    }
-
-    .country-card {
-        background-color: white;
-        border: 2px solid #d1d5db;
-        padding: 1.5rem;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        height: 100%;
-    }
-
-    .country-image-placeholder {
-        height: 10rem;
-        background-color: #f3f4f6;
-        border: 2px solid #d1d5db;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #6b7280;
-    }
-
-    .country-name {
-        height: 2rem;
-        background-color: #e5e7eb;
-        border: 2px solid #d1d5db;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.875rem;
-        color: #4b5563;
-    }
-
-    .country-description {
-        height: 4rem;
-        background-color: #f9fafb;
-        border: 1px solid #d1d5db;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.75rem;
-        color: #6b7280;
-    }
-
-    .carousel-btn {
-        background-color: white;
-        border: 2px solid #d1d5db;
-        width: 2.5rem;
-        height: 2.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        font-size: 1.5rem;
-        color: #4b5563;
-        transition: background-color 0.2s;
-    }
-
-    .carousel-btn:hover {
-        background-color: #f3f4f6;
-    }
-
-    .carousel-dots {
-        display: flex;
-        justify-content: center;
-        gap: 0.5rem;
-        margin-top: 1.5rem;
-    }
-
-    .carousel-dot {
-        width: 0.75rem;
-        height: 0.75rem;
-        background-color: #d1d5db;
-        border-radius: 50%;
-        cursor: pointer;
-        transition: background-color 0.2s;
-    }
-
-    .carousel-dot.active {
-        background-color: #4b5563;
-    }
-
-    .carousel-dot:hover {
-        background-color: #9ca3af;
-    }
-
-    /* Featured Interviews Section */
-    .publications-section {
-        padding: 4rem 0;
-        background-color: white;
-        border-top: 2px solid #d1d5db;
-        border-bottom: 2px solid #d1d5db;
-    }
-
-    .interviews-list {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .interview-item {
-        border: 2px solid #d1d5db;
-        padding: 1.5rem;
-        display: flex;
-        gap: 1.5rem;
-    }
-
-    .interview-photo {
-        width: 6rem;
-        height: 8rem;
-        background-color: #f3f4f6;
-        border: 2px solid #d1d5db;
-        flex-shrink: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.75rem;
-        color: #6b7280;
-    }
-
-    .interview-content {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-    }
-
-    .interview-name {
-        height: 1.5rem;
-        background-color: #e5e7eb;
-        border: 2px solid #d1d5db;
-        display: flex;
-        align-items: center;
-        padding: 0 0.75rem;
-        font-size: 0.875rem;
-        color: #4b5563;
-    }
-
-    .interview-location {
-        height: 1rem;
-        background-color: #f3f4f6;
-        border: 1px solid #d1d5db;
-        width: 66.666%;
-        display: flex;
-        align-items: center;
-        padding: 0 0.75rem;
-        font-size: 0.75rem;
-        color: #6b7280;
-    }
-
-    .interview-abstract {
-        height: 5rem;
-        background-color: #f9fafb;
-        border: 1px solid #d1d5db;
-        display: flex;
-        align-items: center;
-        padding: 0 0.75rem;
-        font-size: 0.75rem;
-        color: #6b7280;
-    }
-
-    /* Index-specific responsive tweaks */
-    @media (min-width: 1024px) {
-        .carousel-item {
-            min-width: calc(33.333% - 1rem);
-        }
-    }
-    @media (max-width: 768px) {
-        .carousel-item {
-            min-width: calc(50% - 1rem);
-        }
-    }
-    @media (max-width: 480px) {
-        .carousel-item {
-            min-width: 100%;
-        }
-
-        .interview-item {
-            flex-direction: column;
-        }
-    }
+/* Responsive tweaks */
+@media (max-width: 1024px) { .carousel-item { min-width: calc(50% - 1.5rem); } }
+@media (max-width: 768px) {
+    .nav { display: none; /* Considera añadir un menú hamburguesa aquí luego */ }
+    .carousel-item { min-width: 100%; padding: 0; }
+    .interview-item { flex-direction: column; text-align: center; }
+}
+:focus { outline: 2px dashed var(--accent-2); outline-offset: 2px; }
