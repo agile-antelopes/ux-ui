@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Details - World Loom</title>
+    <link rel="stylesheet" href="../css/index.css">
+    <style>
+        /* Country-specific layout extensions */
+        .main-content { padding: 3rem 0 5rem; background-color: var(--bg); }
+
+        .back-button {
+            display: inline-block; margin-bottom: 2rem; padding: 0.5rem 1rem;
+            background-color: var(--panel); color: var(--text); border: 1px solid var(--border);
+            border-radius: 8px; text-decoration: none; font-size: 0.95rem; cursor: pointer; transition: all 0.2s;
+        }
+        .back-button:hover { color: var(--primary); border-color: var(--primary); box-shadow: 0 2px 4px rgba(59, 130, 246, 0.1); }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Tarjetas un poco más anchas */
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+            align-items: start; /* Evita que las tarjetas con poco texto se estiren verticalmente */
+        }
+
+        .stat-box {
+            background-color: var(--panel);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: left; /* Alineación a la izquierda para facilitar la lectura de listas o párrafos */
+            transition: transform 0.2s;
+            border-top: 4px solid var(--primary); /* Acento de color superior para darle estructura */
+        }
+
+        .stat-box:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.08);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .stat-value {
+            font-size: 1.1rem; /* Tamaño más manejable para textos largos */
+            font-weight: normal;
+            color: var(--text); /* Color neutro en lugar de primario para no saturar la vista */
+            line-height: 1.6;
+        }
+        .detail-section-title { font-size: 2rem; color: var(--text); margin-bottom: 2rem; text-align: center; }
+
+        /* Accordion Styles */
+        details.interview-accordion {
+            background-color: var(--panel); border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 1.5rem; transition: all 0.3s ease;
+        }
+        summary.interview-summary {
+            display: flex; align-items: center; justify-content: space-between; padding: 1.5rem; cursor: pointer; list-style: none; user-select: none;
+        }
+        summary.interview-summary::-webkit-details-marker { display: none; }
+        summary.interview-summary:hover { background-color: #f3f4f6; border-radius: 12px; }
+        details[open] summary.interview-summary { border-bottom: 1px solid var(--border); border-radius: 12px 12px 0 0; }
+
+        .summary-content { display: flex; align-items: center; gap: 1.5rem; }
+        .interview-avatar { width: 60px; height: 60px; background-color: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-family: "Audiowide", sans-serif; }
+        .interview-meta h3 { font-size: 1.25rem; color: var(--text); margin-bottom: 0.2rem; }
+        .interview-meta p { font-size: 0.9rem; color: var(--muted); }
+
+        .toggle-icon { font-size: 1.5rem; color: var(--muted); transition: transform 0.3s ease; }
+        details[open] .toggle-icon { transform: rotate(180deg); color: var(--primary); }
+
+        .interview-body { padding: 2rem 1.5rem; background-color: var(--panel); border-radius: 0 0 12px 12px; }
+        .topic-group { margin-bottom: 2rem; }
+        .topic-group:last-child { margin-bottom: 0; }
+        .topic-title { font-size: 1.2rem; color: var(--primary); margin-bottom: 1rem; padding-left: 1rem; border-left: 4px solid var(--primary); }
+        .qa-block { background-color: var(--bg); border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem; }
+        .qa-question { font-weight: bold; color: var(--text); margin-bottom: 0.5rem; }
+        .qa-answer { color: var(--muted); line-height: 1.6; }
+    </style>
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <div class="header-content">
+            <div class="logo-box"></div>
+            <nav class="nav">
+                <a class="nav-item" href="../index.html">Home</a>
+                <a class="nav-item" href="../index.html#carousel-wrapper">Countries A-Z</a>
+                <a class="nav-item" href="../index.html#jump-to-interviews">Interviews</a>
+                <a class="nav-item" href="../index.html#jump-to-contact">About Us</a>
+                <input type="text" class="nav-search" placeholder="Search countries...">
+            </nav>
+        </div>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1 id="country-title">Loading...</h1>
+        </div>
+    </div>
+</section>
+
+<main class="main-content">
+    <div class="container">
+        <button class="back-button" onclick="window.location.href='../index.html'">← Back to Home</button>
+        <div class="stats-grid" id="facts-container"></div>
+        <section class="detail-section">
+            <h2 class="detail-section-title">Cultural Experiences & Interviews</h2>
+            <div id="interviews-container"></div>
+        </section>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+                <p class="footer-heading">Contact Us</p>
+                <p class="footer-item">123 Global Ave, NY</p>
+                <p class="footer-item">info@worldloom.org</p>
+            </div>
+            <div class="footer-column">
+                <p class="footer-heading">Quick Links</p>
+                <p class="footer-item">Country Archive</p>
+                <p class="footer-item">Latest Interviews</p>
+            </div>
+            <div class="footer-column">
+                <p class="footer-heading">Newsletter</p>
+                <input type="email" class="footer-input" placeholder="your@email.com">
+                <button class="footer-button">Subscribe</button>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <h3 class="footer-copyright">© 2026 World Loom Network. All rights reserved.</h3>
+        </div>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        // Capturamos el código del país desde la URL (ej. ?country=COL)
+        const urlParams = new URLSearchParams(window.location.search);
+        const countryCode = urlParams.get('country') || 'JPN';
+
+        // --- AQUÍ ACTUALIZAS LA URL DE TU BACKEND ---
+        const endpoint = `https://backend-two-psi-89.vercel.app/countries/${countryCode}`;
+
+        try {
+            const response = await fetch(endpoint);
+            if (!response.ok) throw new Error('Network response was not ok');
+            const data = await response.json();
+
+            // 1. Actualizar el título de la página
+            document.getElementById('country-title').textContent = data.country_name;
+            document.title = `${data.country_name} - World Loom`;
+
+            // 2. Poblar la sección de estadísticas (Facts)
+            const factsContainer = document.getElementById('facts-container');
+
+            const factsMapping = [
+                { label: 'Population', key: 'population' },
+                { label: 'Government', key: 'government' },
+                { label: 'Language', key: 'language' },
+                { label: 'Currency', key: 'currency' },
+                { label: 'Climate', key: 'climate' },
+                { label: 'Food', key: 'food' },
+                { label: 'Typical Food', key: 'typicalFood' },
+                { label: 'Traditions', key: 'traditions' },
+                { label: 'Transport', key: 'transport' }
+            ];
+
+            factsMapping.forEach(fact => {
+                if (data.facts && data.facts[fact.key]) {
+                    factsContainer.innerHTML += `
+                        <div class="stat-box">
+                            <p class="stat-label">${fact.label}</p>
+                            <h2 class="stat-value">${data.facts[fact.key]}</h2>
+                        </div>
+                    `;
+                }
+            });
+
+            // 3. Poblar la sección de entrevistas
+            const interviewsContainer = document.getElementById('interviews-container');
+
+            if (data.experiences && data.experiences.length > 0) {
+                data.experiences.forEach((exp) => {
+                    const groupedResponses = {};
+                    exp.responses.forEach(r => {
+                        if (!groupedResponses[r.topic]) {
+                            groupedResponses[r.topic] = [];
+                        }
+                        groupedResponses[r.topic].push(r);
+                    });
+
+                    const interviewDate = new Date(exp.date).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+
+                    let htmlContent = `
+                        <details class="interview-accordion">
+                            <summary class="interview-summary">
+                                <div class="summary-content">
+                                    <div class="interview-avatar">${exp.interviewee.charAt(0)}</div>
+                                    <div class="interview-meta">
+                                        <h3>Interview with ${exp.interviewee}</h3>
+                                        <p>Interviewer: ${exp.interviewer} &bull; ${interviewDate}</p>
+                                    </div>
+                                </div>
+                                <div class="toggle-icon">▼</div>
+                            </summary>
+                            <div class="interview-body">
+                    `;
+
+                    for (const [topic, qas] of Object.entries(groupedResponses)) {
+                        htmlContent += `
+                            <div class="topic-group">
+                                <h4 class="topic-title">${topic}</h4>
+                        `;
+                        qas.forEach(qa => {
+                            htmlContent += `
+                                <div class="qa-block">
+                                    <p class="qa-question">Q: ${qa.question}</p>
+                                    <p class="qa-answer">A: ${qa.answer}</p>
+                                </div>
+                            `;
+                        });
+                        htmlContent += `</div>`;
+                    }
+
+                    htmlContent += `</div></details>`;
+                    interviewsContainer.innerHTML += htmlContent;
+                });
+            } else {
+                interviewsContainer.innerHTML = '<p style="text-align:center; color: var(--muted);">No interviews available for this country yet.</p>';
+            }
+        } catch (error) {
+            console.error('Error fetching country data:', error);
+            document.getElementById('country-title').textContent = "Data Unavailable";
+            document.getElementById('facts-container').innerHTML = '<p style="grid-column: 1/-1; text-align:center;">Could not load country facts.</p>';
+        }
+    });
+</script>
+</body>
+</html>
